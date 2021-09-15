@@ -1,0 +1,8 @@
+Steps:-
+i) Do a "mvn clean package" ->  this will generate Interceptor-1.0-SNAPSHOT.jar
+ii) Replace the "<ProxyURL>" to the url where you want to proxy for
+iii) Hit the below command to execute the service. It is configured to consume less memory. Refer wiremock commandline options to play with different settings.
+
+java -cp target/Interceptor-1.0-SNAPSHOT.jar:wiremock-standalone-2.27.2.jar:libs/* com.github.tomakehurst.wiremock.standal
+e.WireMockServerRunner --port=8090 --proxy-all=<ProxyURL> --global-response-templating  --disable-request-logging  --no-request-journal --extensi
+ons com.agilysys.qa.interceptors.RequestInterceptor,com.agilysys.qa.interceptors.ResponseInterceptor --max-template-cache-entries=0
